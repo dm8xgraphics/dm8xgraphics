@@ -1,0 +1,97 @@
+.services {
+  padding: 120px 8%;
+  background: #e5e5e5;
+  color: #000;
+}
+
+.services-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.services-heading {
+  font-family: "Press Start 2P", cursive;
+  font-size: 3rem;
+  margin-bottom: 50px;
+  color: #000;
+  font-weight: 700;
+}
+
+.services-para {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 1.3rem;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.inline-logo {
+  height: 28px;        /* adjust size */
+  width: auto;
+  margin: 0 8px;
+  vertical-align: middle;
+}
+
+/* ===== Responsive Services Section ===== */
+
+/* Tablets */
+@media (max-width: 900px) {
+  .services {
+    padding: 90px 6%;
+  }
+
+  .services-heading {
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    margin-bottom: 36px;
+  }
+
+  .services-para {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 700px;
+  }
+
+  .inline-logo {
+    height: 22px;
+    margin: 0 6px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .services {
+    padding: 70px 5%;
+  }
+
+  .services-heading {
+    font-size: 1.6rem;
+    margin-bottom: 28px;
+  }
+
+  .services-para {
+    font-size: 1rem;
+    line-height: 1.65;
+    max-width: 100%;
+  }
+
+  .inline-logo {
+    height: 18px;
+    margin: 0 4px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .services-heading {
+    font-size: 1.4rem;
+  }
+
+  .services-para {
+    font-size: 0.95rem;
+  }
+
+  .inline-logo {
+    height: 16px;
+  }
+}

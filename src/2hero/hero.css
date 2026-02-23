@@ -1,0 +1,127 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8%;
+  background: #f5f5f5;
+  color: #000;
+}
+
+/* LEFT */
+.hero-left {
+  flex: 1;
+}
+
+.hero-name {
+  font-family: "Press Start 2P", cursive;
+  font-size: 3.5rem;
+  margin-bottom: 30px;
+  line-height: 1.3;
+  color: #2ecc71;
+}
+
+.hero-label {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 2rem;
+  margin-bottom: 25px;
+}
+
+.hero-desc {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 1.3rem;
+  max-width: 600px;
+  line-height: 1.7;
+}
+
+/* RIGHT */
+.hero-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.hero-image-box {
+  position: relative;
+  display: inline-block;
+  padding: 6px;                 /* border thickness */
+  background: #2ecc71;          /* solid green border */
+  border-radius: 20px 0 20px 0;
+}
+
+.hero-image {
+  width: 420px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 14px 0 14px 0;
+  background: #fff;
+}
+
+
+
+
+/* ===== Updated Responsive (smaller image + smaller name) ===== */
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    justify-content: center;
+    gap: 36px;
+    padding: 60px 6%;
+    min-height: auto;
+  }
+
+  .hero-right {
+    order: 1;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-left {
+    order: 2;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Smaller name */
+  .hero-name {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+    margin-bottom: 16px;
+  }
+
+  .hero-label {
+    font-size: clamp(1.1rem, 4vw, 1.6rem);
+    margin-bottom: 14px;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  /* Smaller image */
+  .hero-image {
+    width: min(320px, 85vw);
+  }
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+  .hero {
+    padding: 50px 5%;
+    gap: 24px;
+  }
+
+  .hero-name {
+    font-size: 1.4rem;
+  }
+
+  .hero-label {
+    font-size: 1rem;
+  }
+
+  .hero-image {
+    width: min(260px, 85vw);
+  }
+}

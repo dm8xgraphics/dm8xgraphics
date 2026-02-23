@@ -1,0 +1,145 @@
+.navbar {
+  width: 100%;
+  height: 120px;
+  background: #e5e5e5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8%;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.brand-logo {
+  height: 70px;
+  width: auto;
+}
+
+.mc-logo {
+  height: 200px;
+  width: auto;
+}
+
+.collab-x {
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: "Press Start 2P", system-ui;
+  position: relative;
+}
+
+/* ===== CONTACT BUTTON ===== */
+
+.contact-btn {
+  background: #2ecc71;
+  color: #f5f5f5;
+  font-family: "Press Start 2P", system-ui;
+  letter-spacing: 2px;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border: 3px solid #000;
+  border-radius: 18px;
+  box-shadow: 6px 6px 0 #000;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  will-change: transform;
+}
+
+/* Instant hover animation */
+.contact-btn:hover {
+  transform: translateY(-2px);
+}
+
+.contact-btn:active {
+  transform: translateY(0px);
+  box-shadow: 5px 5px 0 #000;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 900px) {
+  .navbar {
+    height: 90px;
+    padding: 0 5%;
+  }
+
+  .nav-left {
+    gap: 14px;
+  }
+
+  .brand-logo {
+    height: 55px;
+  }
+
+  .mc-logo {
+    height: 130px;
+  }
+
+  .collab-x {
+    font-size: 1.6rem;
+  }
+
+  .contact-btn {
+    font-size: 0.9rem;
+    padding: 12px 22px;
+    border-radius: 14px;
+    box-shadow: 5px 5px 0 #000;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    height: 80px;
+    padding: 0 4%;
+  }
+
+  .nav-left {
+    gap: 10px;
+  }
+
+  .brand-logo {
+    height: 42px;
+  }
+
+  .mc-logo {
+    height: 100px;
+  }
+
+  .collab-x {
+    font-size: 1.2rem;
+  }
+
+  .contact-btn {
+    font-size: 0.75rem;
+    padding: 8px 14px;
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 #000;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand-logo {
+    height: 36px;
+  }
+
+  .mc-logo {
+    height: 85px;
+  }
+
+  .collab-x {
+    font-size: 1rem;
+  }
+
+  .contact-btn {
+    font-size: 0.65rem;
+    padding: 6px 10px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 #000;
+  }
+}

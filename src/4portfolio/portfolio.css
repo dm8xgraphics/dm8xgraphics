@@ -1,0 +1,471 @@
+/* Prevent horizontal overflow */
+.portfolio {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+
+  padding: 120px 6%;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  color: #fff;
+}
+
+/* Heading */
+.portfolio-left {
+  width: 100%;
+  text-align: center;
+}
+
+.portfolio-heading {
+  font-family: "Press Start 2P", cursive;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* Layout */
+.portfolio-right {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* View container */
+.portfolio-view {
+  position: relative;
+  width: 100%;
+  height: clamp(300px, 38vw, 520px); /* slightly smaller overall */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Coverflow */
+.coverflow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Base card */
+.cover-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(62%, 780px);  /* smaller than before */
+  height: 78%;             /* smaller than before */
+  border-radius: 22px;
+  overflow: hidden;
+  background: #0f0f0f;
+
+  transform: translate(-50%, -50%) scale(0.9);
+  opacity: 0;
+  filter: blur(4px);
+
+  transition:
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 650ms ease,
+    filter 650ms ease;
+  will-change: transform, opacity, filter;
+}
+
+/* IMPORTANT: preserve original full image without cropping */
+.cover-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;   /* no trimming/cropping */
+  background: #000;      /* fills empty space if image aspect differs */
+}
+
+/* Active */
+.cover-card.active {
+  z-index: 3;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* Left preview */
+.cover-card.prev {
+  z-index: 2;
+  transform: translate(-118%, -50%) scale(0.86);
+  opacity: 0.55;
+  filter: blur(2px);
+}
+
+/* Right preview */
+.cover-card.next {
+  z-index: 2;
+  transform: translate(18%, -50%) scale(0.86);
+  opacity: 0.55;
+  filter: blur(2px);
+}
+
+/* Hidden cards */
+.cover-card.hidden {
+  z-index: 1;
+  transform: translate(-50%, -50%) scale(0.75);
+  opacity: 0;
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+/* Arrows */
+.p-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 58px;
+  height: 58px;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  border-radius: 50%;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-size: 2.4rem;
+  display: grid;
+  place-items: center;
+  backdrop-filter: blur(8px);
+  z-index: 10;
+
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.p-arrow:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.p-arrow.left { left: 10px; }
+.p-arrow.right { right: 10px; }
+
+/* Dots */
+.p-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.p-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.p-dot:hover {
+  transform: scale(1.2);
+}
+
+.p-dot.active {
+  background: #2ecc71;
+}
+
+/* Meta */
+.portfolio-meta {
+  text-align: center;
+  max-width: 900px;
+}
+
+.portfolio-title {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+  margin: 0 0 10px 0;
+}
+
+.portfolio-summary {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+
+
+
+
+
+
+/* ===== PORTFOLIO (Mobile-first, highly responsive) ===== */
+
+.portfolio {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+
+  padding: 80px 5%;
+  background: #000;
+  color: #fff;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* Heading */
+.portfolio-left {
+  width: 100%;
+  text-align: center;
+}
+
+.portfolio-heading {
+  font-family: "Press Start 2P", cursive;
+  font-size: clamp(1.6rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+
+/* Layout container */
+.portfolio-right {
+  width: 100%;
+  max-width: 1200px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* View container */
+.portfolio-view {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+
+  /* Responsive height */
+  height: clamp(240px, 62vw, 520px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Keeps arrows visible on small screens */
+  padding: 0 44px;
+}
+
+/* Coverflow */
+.coverflow {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Base card */
+.cover-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  /* Mobile-first: big center card */
+  width: min(92%, 820px);
+  height: 100%;
+
+  transform: translate(-50%, -50%) scale(0.92);
+  opacity: 0;
+  filter: blur(5px);
+
+  border-radius: 18px;
+  overflow: hidden;
+  background: #0f0f0f;
+
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+
+  transition:
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 650ms ease,
+    filter 650ms ease;
+  will-change: transform, opacity, filter;
+}
+
+.cover-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;   /* no cropping */
+  background: #000;      /* fills empty space if aspect differs */
+}
+
+/* Active */
+.cover-card.active {
+  z-index: 3;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* On small devices, keep previews subtle and mostly off-screen */
+.cover-card.prev,
+.cover-card.next {
+  z-index: 2;
+  opacity: 0.28;
+  filter: blur(3px);
+  transform: translate(-50%, -50%) scale(0.88);
+  pointer-events: none;
+}
+
+/* Hide others */
+.cover-card.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Arrows (mobile-friendly) */
+.p-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+
+  font-size: 2rem;
+  line-height: 1;
+
+  display: grid;
+  place-items: center;
+
+  cursor: pointer;
+  z-index: 10;
+
+  backdrop-filter: blur(10px);
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.p-arrow:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.p-arrow.left { left: 10px; }
+.p-arrow.right { right: 10px; }
+
+/* Dots */
+.p-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.p-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.30);
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.p-dot:hover {
+  transform: scale(1.2);
+}
+
+.p-dot.active {
+  background: #2ecc71;
+}
+
+/* Meta */
+.portfolio-meta {
+  text-align: center;
+  width: 100%;
+  max-width: 900px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.portfolio-title {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: clamp(1.4rem, 4.2vw, 2.4rem);
+  margin: 0;
+}
+
+.portfolio-summary {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: clamp(0.95rem, 2.8vw, 1.12rem);
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.7;
+}
+
+/* ===== Tablets and up: bring back side previews nicely ===== */
+@media (min-width: 768px) {
+  .portfolio {
+    padding: 110px 6%;
+    gap: 36px;
+  }
+
+  .portfolio-view {
+    padding: 0 70px;
+    height: clamp(340px, 45vw, 560px);
+  }
+
+  .cover-card {
+    width: min(72%, 900px);
+    height: 88%;
+    border-radius: 22px;
+  }
+
+  .cover-card.prev {
+    opacity: 0.55;
+    filter: blur(2px);
+    transform: translate(-118%, -50%) scale(0.86);
+  }
+
+  .cover-card.next {
+    opacity: 0.55;
+    filter: blur(2px);
+    transform: translate(18%, -50%) scale(0.86);
+  }
+
+  .p-arrow {
+    width: 56px;
+    height: 56px;
+    font-size: 2.4rem;
+  }
+
+  .p-dots {
+    bottom: 14px;
+    gap: 10px;
+  }
+
+  .p-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* ===== Large screens: slightly bigger hero slider ===== */
+@media (min-width: 1200px) {
+  .portfolio-view {
+    max-width: 1100px;
+  }
+}

@@ -1,0 +1,229 @@
+/* pricing.css (matched to beforenafter.css box sizing/spacing/padding + smaller cards on responsive) */
+
+:root{
+  --white: #f5f5f5;
+  --green: #2ecc71;
+  --grey: #e5e5e5;
+  --black: #000000;
+}
+
+/* Section */
+.pricing-section{
+  width: 100%;
+  padding: 60px 20px 120px;            /* same as .ba-section */
+  background: var(--grey);        /* grey section bg */
+  color: var(--white);
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+/* Heading (like ba-heading) */
+.pricing-heading{
+  text-align: center;
+  margin-bottom: 60px;
+  padding: 30px 0;
+  font-family: "Press Start 2P", system-ui;
+  font-size: 40px;
+  letter-spacing: 3px;
+  color: #000;
+}
+
+/* Grid/layout */
+.pricing-wrap{
+  max-width: 1500px;             /* same as .ba-grid */
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;           /* horizontal like .ba-grid */
+  gap: 40px;                     /* same as .ba-grid */
+  justify-content: center;
+  align-items: stretch;
+}
+
+/* Cards (exact box properties aligned with .ba-card) */
+.price-card{
+  width: 33.33%;                  /* same as .ba-card */
+  background: var(--green);        /* green boxes */
+  border: 3px solid var(--black);
+  border-radius: 20px;            /* same as .ba-card */
+  padding: 20px;                  /* same as .ba-card */
+  box-shadow: 8px 8px 0 var(--black); /* same as .ba-card */
+  color: var(--white);
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top */
+.price-card-top{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;            /* same as .ba-cardTop */
+}
+
+.plan-title{
+  margin: 0;
+  font-family: "Press Start 2P", system-ui;
+  font-size: 16px;                /* same as .ba-title */
+}
+
+/* Price */
+.plan-price{
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 0 0 20px;
+}
+
+.price-currency{
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 34px;
+  line-height: 1;
+}
+
+.price-value{
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 72px;
+  line-height: 1;
+}
+
+/* Divider */
+.plan-divider{
+  height: 3px;
+  background: var(--black);
+  border-radius: 999px;
+  margin: 0 0 20px;
+}
+
+/* Features */
+.plan-features{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.feature-item{
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.check{
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--black);
+  position: relative;
+  flex: 0 0 18px;
+  margin-top: 2px;
+  box-shadow: 4px 4px 0 var(--black);
+}
+
+.check::after{
+  content:"";
+  position:absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border-right: 3px solid var(--black);
+  border-bottom: 3px solid var(--black);
+  transform: rotate(45deg);
+}
+
+.feature-text{
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 18px;
+  line-height: 1.35;
+  color: var(--white);
+}
+
+/* ===== Responsive ===== */
+
+/* Laptops/tablets: allow wrap + slightly smaller boxes */
+@media (max-width: 1100px) {
+  .pricing-wrap{
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .price-card{
+    width: 44%;          /* smaller than 48% */
+    padding: 16px;       /* slightly smaller padding */
+  }
+
+  .price-value{
+    font-size: 60px;
+  }
+
+  .feature-text{
+    font-size: 16px;
+  }
+}
+
+/* Phones: stack vertically + make card not full width */
+@media (max-width: 700px) {
+  .pricing-section{
+    padding: 40px 14px 90px;  /* same as ba-section mobile */
+  }
+
+  .pricing-heading{
+    font-size: 24px;
+    padding: 18px 0;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+  }
+
+  .pricing-wrap{
+    flex-direction: column;
+    gap: 22px;           /* same as ba-grid mobile */
+    max-width: 520px;    /* same as ba-grid mobile */
+  }
+
+  .price-card{
+    width: 90%;          /* smaller than 100% */
+    margin: 0 auto;
+    padding: 14px;       /* same as ba-card mobile */
+    border-radius: 16px; /* same as ba-card mobile */
+    box-shadow: 6px 6px 0 var(--black);
+  }
+
+  .plan-title{
+    font-size: 12px;     /* same as ba-title mobile */
+  }
+
+  .price-currency{
+    font-size: 22px;
+  }
+
+  .price-value{
+    font-size: 48px;
+  }
+
+  .feature-text{
+    font-size: 14px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 420px) {
+  .pricing-heading{
+    font-size: 20px;
+    padding: 14px 0;
+  }
+
+  .price-card{
+    width: 95%;
+    padding: 12px;
+  }
+
+  .price-value{
+    font-size: 42px;
+  }
+
+  .feature-text{
+    font-size: 13px;
+  }
+}

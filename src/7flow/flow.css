@@ -1,0 +1,83 @@
+.flow {
+  padding: 100px 8%;
+  background: #000;
+  color: #f5f5f5;
+}
+
+.flow-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.flow-heading {
+  font-family: "Press Start 2P", cursive;
+  font-size: 3rem;
+  margin-bottom: 40px;
+  color: #f5f5f5;
+}
+
+.flow-points {
+  display: flex;
+  flex-direction: column;
+  gap: 18px; /* reduced spacing */
+}
+
+.flow-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.flow-item p {
+  font-family: "Montserrat Alternates", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.6; /* reduced line height */
+  margin: 0;
+}
+
+/* Stylish Minecraft green pointer */
+.flow-dot {
+  width: 10px;
+  height: 10px;
+  background: #2ecc71;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 900px) {
+  .flow {
+    padding: 80px 6%;
+  }
+
+  .flow-heading {
+    font-size: clamp(1.8rem, 5vw, 2.3rem);
+    margin-bottom: 30px;
+  }
+
+  .flow-item p {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .flow {
+    padding: 60px 5%;
+  }
+
+  .flow-heading {
+    font-size: 1.5rem;
+  }
+
+  .flow-item p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .flow-dot {
+    width: 8px;
+    height: 8px;
+  }
+}

@@ -1,0 +1,70 @@
+/* =========================================================
+   UNIFORM LOAD ANIMATION SYSTEM (Navbar / Hero / Services)
+   ========================================================= */
+
+/* Base: hidden before loaded */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px) scale(0.985);
+  filter: blur(6px);
+  transition:
+    opacity 700ms cubic-bezier(.2,.9,.2,1),
+    transform 700ms cubic-bezier(.2,.9,.2,1),
+    filter 700ms cubic-bezier(.2,.9,.2,1);
+  will-change: transform, opacity, filter;
+}
+
+/* When component mounts */
+.reveal.is-loaded {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Creative pixel-pop accent (subtle) */
+.reveal.is-loaded {
+  animation: pixelPop 520ms cubic-bezier(.2,.9,.2,1) both;
+}
+
+@keyframes pixelPop {
+  0%   { transform: translateY(18px) scale(0.985); }
+  55%  { transform: translateY(-2px) scale(1.01); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Optional: stagger child items inside a section */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(14px);
+  filter: blur(6px);
+  transition:
+    opacity 650ms cubic-bezier(.2,.9,.2,1),
+    transform 650ms cubic-bezier(.2,.9,.2,1),
+    filter 650ms cubic-bezier(.2,.9,.2,1);
+  will-change: transform, opacity, filter;
+}
+
+.reveal-stagger.is-loaded > * {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Stagger timing */
+.reveal-stagger.is-loaded > *:nth-child(1) { transition-delay: 80ms; }
+.reveal-stagger.is-loaded > *:nth-child(2) { transition-delay: 160ms; }
+.reveal-stagger.is-loaded > *:nth-child(3) { transition-delay: 240ms; }
+.reveal-stagger.is-loaded > *:nth-child(4) { transition-delay: 320ms; }
+.reveal-stagger.is-loaded > *:nth-child(5) { transition-delay: 400ms; }
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-stagger > * {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}
