@@ -99,8 +99,12 @@ function BeforeAfterCard({ title = "Thumbnail", beforeSrc, afterSrc }) {
           </div>
         </div>
 
-        <span id={ids.before} className="ba-srOnly">before image</span>
-        <span id={ids.after} className="ba-srOnly">after image</span>
+        <span id={ids.before} className="ba-srOnly">
+          before image
+        </span>
+        <span id={ids.after} className="ba-srOnly">
+          after image
+        </span>
       </div>
     </article>
   );
@@ -130,14 +134,12 @@ export default function BeforeNAfter() {
         </a>
       </div>
 
+      {/* Small-screen only hint line (after button, before thumbnails) */}
+      <div className="ba-tapHint">Don't slide manually, just tap on the design.</div>
+
       <div className="ba-grid">
         {items.map((it, idx) => (
-          <BeforeAfterCard
-            key={idx}
-            title={it.title}
-            beforeSrc={it.beforeSrc}
-            afterSrc={it.afterSrc}
-          />
+          <BeforeAfterCard key={idx} title={it.title} beforeSrc={it.beforeSrc} afterSrc={it.afterSrc} />
         ))}
       </div>
     </section>

@@ -17,6 +17,17 @@
   letter-spacing: 3px;
 }
 
+/* Small-screen only hint (hidden by default) */
+.ba-tapHint {
+  display: none;
+  text-align: center;
+  margin: -34px auto 34px; /* pulls closer to button, then space to thumbnails */
+  font-family: "Press Start 2P", system-ui;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: #000;
+}
+
 /* GRID */
 .ba-grid {
   max-width: 1500px;
@@ -205,6 +216,13 @@
     letter-spacing: 2px;
   }
 
+  /* show hint only on small screens */
+  .ba-tapHint {
+    display: block;
+    font-size: 10px;
+    margin: -18px auto 26px; /* sits right under button, then space to thumbnails */
+  }
+
   .ba-grid {
     flex-direction: column;
     gap: 22px;
@@ -282,5 +300,11 @@
 
   .ba-btnLogo {
     height: 18px;
+  }
+
+  /* keep hint readable on extra small screens */
+  .ba-tapHint {
+    font-size: 9px;
+    margin: -16px auto 22px;
   }
 }
