@@ -1,15 +1,18 @@
 import "./hero.css";
 import "./animations.css";
 import profile from "./profile.jpg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 function Hero() {
-  const titles = [
-    "Youtube Thumbnail Designer",
-    "Graphic Designer",
-    "Minecraft Thumbnail Specialist",
-    "High-CTR Thumbnail Expert"
-  ];
+  const titles = useMemo(
+    () => [
+      "Youtube Thumbnail Designer",
+      "Graphic Designer",
+      "Minecraft Thumbnail Specialist",
+      "High-CTR Thumbnail Expert",
+    ],
+    []
+  );
 
   const [loaded, setLoaded] = useState(false);
   const [titleIndex, setTitleIndex] = useState(0);
@@ -44,7 +47,7 @@ function Hero() {
     }, typingSpeed);
 
     return () => clearTimeout(timer);
-  }, [text, isDeleting, titleIndex, titles]); // added titles
+  }, [text, isDeleting, titleIndex, titles]);
 
   return (
     <section className={`hero reveal ${loaded ? "is-loaded" : ""}`}>
