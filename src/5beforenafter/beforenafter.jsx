@@ -8,7 +8,6 @@ import before2 from "./before2.jpg";
 import after2 from "./after2.jpg";
 import before3 from "./before3.jpg";
 import after3 from "./after3.jpg";
-import ytlogo from "./youtube-logo.png";
 
 function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
@@ -130,7 +129,6 @@ export default function BeforeNAfter() {
           rel="noopener noreferrer"
         >
           VIEW SOURCE
-          {/* <img src={ytlogo} alt="YouTube" className="ba-btnLogo" /> */}
         </a>
       </div>
 

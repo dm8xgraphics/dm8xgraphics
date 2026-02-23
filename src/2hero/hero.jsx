@@ -1,5 +1,5 @@
 import "./hero.css";
-import "./animations.css"; // if not importing globally
+import "./animations.css";
 import profile from "./profile.jpg";
 import { useEffect, useState } from "react";
 
@@ -28,11 +28,15 @@ function Hero() {
 
     const timer = setTimeout(() => {
       if (!isDeleting) {
-        if (text.length < current.length) setText(current.slice(0, text.length + 1));
-        else setTimeout(() => setIsDeleting(true), holdTime);
+        if (text.length < current.length) {
+          setText(current.slice(0, text.length + 1));
+        } else {
+          setTimeout(() => setIsDeleting(true), holdTime);
+        }
       } else {
-        if (text.length > 0) setText(current.slice(0, text.length - 1));
-        else {
+        if (text.length > 0) {
+          setText(current.slice(0, text.length - 1));
+        } else {
           setIsDeleting(false);
           setTitleIndex((prev) => (prev + 1) % titles.length);
         }
@@ -40,7 +44,7 @@ function Hero() {
     }, typingSpeed);
 
     return () => clearTimeout(timer);
-  }, [text, isDeleting, titleIndex]);
+  }, [text, isDeleting, titleIndex, titles]); // added titles
 
   return (
     <section className={`hero reveal ${loaded ? "is-loaded" : ""}`}>
