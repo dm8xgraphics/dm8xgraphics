@@ -11,7 +11,7 @@ import t6 from "./t6.png";
 function Portfolio() {
   const items = [
     { img: t1, title: "From NOOB to KING in 100 Days!",    },
-    { img: t2, title: "The Calm Before I Destroy Everything",    },
+    { img: t2, title: "The Calm Before I Destroyed Everything",    },
     { img: t3, title: "3 Pro Speedrunners vs 1 Secret Cheater",    },
     { img: t4, title: "Minecraft Skeletons If They Had Jobs",    },
     { img: t5, title: "Surviving a Minecraft Tsunami…",    },
