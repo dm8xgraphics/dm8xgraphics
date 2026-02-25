@@ -31,7 +31,11 @@ function Flow() {
           <div className="flow-item">
             <span className="flow-dot"></span>
             <p>
-              To make this risk-free, I can offer the 1-video package complimentary as a trial.
+              To make this risk-free, I can offer the{" "}
+              <span className="minecraft-green">
+                1-video package complimentary
+              </span>{" "}
+              as a trial.
             </p>
           </div>
         </div>

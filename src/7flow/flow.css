@@ -45,6 +45,10 @@
   flex-shrink: 0;
 }
 
+.minecraft-green {
+  color: #2ecc71; /* Minecraft light green */
+}
+
 /* ===== Responsive ===== */
 
 @media (max-width: 900px) {
