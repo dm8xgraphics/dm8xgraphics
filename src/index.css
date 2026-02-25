@@ -52,6 +52,32 @@ body {
 }
 
 /* =========================================================
+   MOBILE TAP HIGHLIGHT OFF + TEXT SELECTION COLOR
+   ========================================================= */
+
+/* Disable the default light-blue tap highlight on mobile (Safari/Chrome) */
+*{
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Optional: remove focus outline that shows after tap on some mobile browsers */
+*:focus{
+  outline: none;
+}
+
+/* Text selection background should be black */
+::selection{
+  background: #000;
+  color: #fff; /* keeps selection readable */
+}
+
+/* Firefox selection */
+::-moz-selection{
+  background: #000;
+  color: #fff;
+}
+
+/* =========================================================
    CURSOR EFFECT (smooth + satisfying)
    - Dot + ring follow cursor (JS sets --mx, --my)
    - On clickable hover: ring grows
@@ -144,6 +170,9 @@ html.cursor-down body::after{
 @media (hover: none) and (pointer: coarse){
   *{ cursor: auto; }
   body::before, body::after{ display:none; }
+
+  /* Extra safety: also ensure tap highlight stays off on touch devices */
+  *{ -webkit-tap-highlight-color: transparent; }
 }
 
 /* Reduce motion */

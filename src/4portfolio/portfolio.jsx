@@ -12,8 +12,8 @@ function Portfolio() {
   const items = [
     { img: t1, title: "From NOOB to KING in 100 Days!",    },
     { img: t2, title: "The Calm Before I Destroy Everything",    },
-    { img: t3, title: "This Is How Minecraft Ends",    },
-    { img: t4, title: "Minecraft But I Start With $1…",    },
+    { img: t3, title: "3 Pro Speedrunners vs 1 Secret Cheater",    },
+    { img: t4, title: "Minecraft Skeletons If They Had Jobs",    },
     { img: t5, title: "Surviving a Minecraft Tsunami…",    },
     { img: t6, title: "100 Tanks vs Ender Monster… Who Wins?",    },
   ];
