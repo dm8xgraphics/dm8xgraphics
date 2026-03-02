@@ -81,7 +81,15 @@
   border-radius: 18px;
   border: 3px solid #000;
   background: #000;
+
+  /* critical for smooth mobile drag */
+  touch-action: none;
+  -webkit-user-select: none;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  /* minor GPU hint (helps some devices) */
+  transform: translateZ(0);
 }
 
 .ba-img {
@@ -90,6 +98,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  pointer-events: none;
 }
 
 .ba-beforeLayer {
@@ -98,6 +107,7 @@
   height: 100%;
   overflow: hidden;
   border-right: 3px solid #000;
+  pointer-events: none;
 }
 
 .ba-label {
@@ -110,6 +120,7 @@
   font-family: "Press Start 2P", system-ui;
   font-size: 12px;
   box-shadow: 4px 4px 0 #000;
+  pointer-events: none;
 }
 
 .ba-label--left {
@@ -130,6 +141,13 @@
   justify-content: center;
   align-items: center;
   cursor: ew-resize;
+
+  /* critical for smooth mobile drag */
+  touch-action: none;
+
+  /* prevents long-press selection/callout */
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .ba-handleLine {
@@ -199,6 +217,17 @@
 .ba-btn:active {
   transform: translateY(0px);
   box-shadow: 6px 6px 0 #000;
+}
+
+.ba-srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 /* ===== Responsive ===== */

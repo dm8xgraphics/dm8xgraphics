@@ -1,4 +1,5 @@
-import React, { useMemo, useRef, useState } from "react";
+// BeforeNAfter.jsx
+import React, { useMemo, useRef, useState, useEffect, useCallback } from "react";
 import "./beforenafter.css";
 
 import before1 from "./before1.jpg";
@@ -16,38 +17,112 @@ function clamp(n, min, max) {
 
 function BeforeAfterCard({ title = "Thumbnail", beforeSrc, afterSrc }) {
   const wrapRef = useRef(null);
+
   const [pos, setPos] = useState(50);
-  const [dragging, setDragging] = useState(false);
+
+  // Keep drag state out of React state for smoothness on mobile
+  const draggingRef = useRef(false);
+  const pointerIdRef = useRef(null);
+
+  // rAF batching to avoid janky updates on small devices
+  const rafRef = useRef(0);
+  const lastClientXRef = useRef(null);
 
   const ids = useMemo(() => {
     const base = Math.random().toString(36).slice(2);
     return { before: `before-${base}`, after: `after-${base}` };
   }, []);
 
-  const setFromClientX = (clientX) => {
+  const setFromClientX = useCallback((clientX) => {
     const el = wrapRef.current;
     if (!el) return;
+
     const r = el.getBoundingClientRect();
-    const x = clientX - r.left;
+    const x = clamp(clientX - r.left, 0, r.width);
     const p = (x / r.width) * 100;
     setPos(clamp(p, 0, 100));
-  };
+  }, []);
 
-  const onPointerDown = (e) => {
-    e.preventDefault();
-    setDragging(true);
-    try {
-      wrapRef.current?.setPointerCapture?.(e.pointerId);
-    } catch {}
-    setFromClientX(e.clientX);
-  };
+  const scheduleFromClientX = useCallback(
+    (clientX) => {
+      lastClientXRef.current = clientX;
+      if (rafRef.current) return;
 
-  const onPointerMove = (e) => {
-    if (!dragging) return;
-    setFromClientX(e.clientX);
-  };
+      rafRef.current = window.requestAnimationFrame(() => {
+        rafRef.current = 0;
+        const x = lastClientXRef.current;
+        if (x == null) return;
+        setFromClientX(x);
+      });
+    },
+    [setFromClientX]
+  );
 
-  const stopDragging = () => setDragging(false);
+  const stopDragging = useCallback(() => {
+    draggingRef.current = false;
+    pointerIdRef.current = null;
+  }, []);
+
+  const onPointerDown = useCallback(
+    (e) => {
+      // Only react to primary pointer
+      if (e.isPrimary === false) return;
+
+      // Prevent page pan/zoom conflicts on mobile
+      e.preventDefault();
+
+      draggingRef.current = true;
+      pointerIdRef.current = e.pointerId;
+
+      const el = wrapRef.current;
+      try {
+        el?.setPointerCapture?.(e.pointerId);
+      } catch {}
+
+      scheduleFromClientX(e.clientX);
+    },
+    [scheduleFromClientX]
+  );
+
+  const onPointerMove = useCallback(
+    (e) => {
+      if (!draggingRef.current) return;
+      if (pointerIdRef.current != null && e.pointerId !== pointerIdRef.current) return;
+
+      e.preventDefault();
+      scheduleFromClientX(e.clientX);
+    },
+    [scheduleFromClientX]
+  );
+
+  const onPointerUp = useCallback((e) => {
+    if (pointerIdRef.current != null && e.pointerId !== pointerIdRef.current) return;
+    stopDragging();
+  }, [stopDragging]);
+
+  const onPointerCancel = useCallback((e) => {
+    if (pointerIdRef.current != null && e.pointerId !== pointerIdRef.current) return;
+    stopDragging();
+  }, [stopDragging]);
+
+  // Global listeners (keeps drag smooth even if finger leaves the element)
+  useEffect(() => {
+    const handleMove = (e) => onPointerMove(e);
+    const handleUp = (e) => onPointerUp(e);
+    const handleCancel = (e) => onPointerCancel(e);
+
+    window.addEventListener("pointermove", handleMove, { passive: false });
+    window.addEventListener("pointerup", handleUp, { passive: true });
+    window.addEventListener("pointercancel", handleCancel, { passive: true });
+
+    return () => {
+      window.removeEventListener("pointermove", handleMove);
+      window.removeEventListener("pointerup", handleUp);
+      window.removeEventListener("pointercancel", handleCancel);
+
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [onPointerMove, onPointerUp, onPointerCancel]);
 
   const onKeyDown = (e) => {
     if (e.key === "ArrowLeft") setPos((p) => clamp(p - 2, 0, 100));
@@ -65,12 +140,8 @@ function BeforeAfterCard({ title = "Thumbnail", beforeSrc, afterSrc }) {
 
       <div
         ref={wrapRef}
-        className={`ba-compare ${dragging ? "is-dragging" : ""}`}
+        className="ba-compare"
         onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={stopDragging}
-        onPointerCancel={stopDragging}
-        onPointerLeave={stopDragging}
       >
         <img className="ba-img ba-img--base" src={afterSrc} alt={`${title} after`} />
         <div className="ba-beforeLayer" style={{ width: `${pos}%` }}>
@@ -91,6 +162,7 @@ function BeforeAfterCard({ title = "Thumbnail", beforeSrc, afterSrc }) {
           aria-valuenow={Math.round(pos)}
           aria-controls={`${ids.before} ${ids.after}`}
           onKeyDown={onKeyDown}
+          onPointerDown={onPointerDown}
         >
           <div className="ba-handleLine" />
           <div className="ba-knob" aria-hidden="true">
@@ -133,7 +205,6 @@ export default function BeforeNAfter() {
         </a>
       </div>
 
-      <div className="ba-tapHint">Don't slide manually, just tap on the design.</div>
 
       <div className="ba-grid">
         {items.map((it, idx) => (
