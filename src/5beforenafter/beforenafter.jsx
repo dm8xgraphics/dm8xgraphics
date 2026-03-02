@@ -6,8 +6,7 @@ import before1 from "./before1.jpg";
 import after1 from "./after1.jpg";
 import before2 from "./before2.jpg";
 import after2 from "./after2.jpg";
-import before3 from "./before3.jpg";
-import after3 from "./after3.jpg";
+// removed before3/after3
 import before4 from "./before4.jpg";
 import after4 from "./after4.jpg";
 
@@ -95,15 +94,21 @@ function BeforeAfterCard({ title = "Thumbnail", beforeSrc, afterSrc }) {
     [scheduleFromClientX]
   );
 
-  const onPointerUp = useCallback((e) => {
-    if (pointerIdRef.current != null && e.pointerId !== pointerIdRef.current) return;
-    stopDragging();
-  }, [stopDragging]);
+  const onPointerUp = useCallback(
+    (e) => {
+      if (pointerIdRef.current != null && e.pointerId !== pointerIdRef.current) return;
+      stopDragging();
+    },
+    [stopDragging]
+  );
 
-  const onPointerCancel = useCallback((e) => {
-    if (pointerIdRef.current != null && e.pointerId !== pointerIdRef.current) return;
-    stopDragging();
-  }, [stopDragging]);
+  const onPointerCancel = useCallback(
+    (e) => {
+      if (pointerIdRef.current != null && e.pointerId !== pointerIdRef.current) return;
+      stopDragging();
+    },
+    [stopDragging]
+  );
 
   // Global listeners (keeps drag smooth even if finger leaves the element)
   useEffect(() => {
@@ -138,11 +143,7 @@ function BeforeAfterCard({ title = "Thumbnail", beforeSrc, afterSrc }) {
         <div className="ba-hint"></div>
       </div>
 
-      <div
-        ref={wrapRef}
-        className="ba-compare"
-        onPointerDown={onPointerDown}
-      >
+      <div ref={wrapRef} className="ba-compare" onPointerDown={onPointerDown}>
         <img className="ba-img ba-img--base" src={afterSrc} alt={`${title} after`} />
         <div className="ba-beforeLayer" style={{ width: `${pos}%` }}>
           <img className="ba-img ba-img--before" src={beforeSrc} alt={`${title} before`} />
@@ -183,10 +184,10 @@ function BeforeAfterCard({ title = "Thumbnail", beforeSrc, afterSrc }) {
 }
 
 export default function BeforeNAfter() {
+  // total 3 sections: 1, 2, and (old 4) becomes 3
   const items = [
     { title: "", beforeSrc: before1, afterSrc: after1 },
     { title: "", beforeSrc: before2, afterSrc: after2 },
-    { title: "", beforeSrc: before3, afterSrc: after3 },
     { title: "", beforeSrc: before4, afterSrc: after4 },
   ];
 
@@ -205,13 +206,9 @@ export default function BeforeNAfter() {
         </a>
       </div>
 
-
       <div className="ba-grid">
         {items.map((it, idx) => (
-          <div
-            key={idx}
-            className={idx === 3 ? "ba-cardWrap ba-cardWrap--mobileOnly" : "ba-cardWrap"}
-          >
+          <div key={idx} className="ba-cardWrap">
             <BeforeAfterCard title={it.title} beforeSrc={it.beforeSrc} afterSrc={it.afterSrc} />
           </div>
         ))}
