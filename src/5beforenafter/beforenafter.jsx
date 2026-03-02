@@ -7,8 +7,8 @@ import after1 from "./after1.jpg";
 import before2 from "./before2.jpg";
 import after2 from "./after2.jpg";
 // removed before3/after3
-import before4 from "./before4.jpg";
-import after4 from "./after4.jpg";
+import before3 from "./before3.jpg";
+import after3 from "./after3.jpg";
 
 function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
@@ -188,7 +188,7 @@ export default function BeforeNAfter() {
   const items = [
     { title: "", beforeSrc: before1, afterSrc: after1 },
     { title: "", beforeSrc: before2, afterSrc: after2 },
-    { title: "", beforeSrc: before4, afterSrc: after4 },
+    { title: "", beforeSrc: before3, afterSrc: after3 },
   ];
 
   return (
