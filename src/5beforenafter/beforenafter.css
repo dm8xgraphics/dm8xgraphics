@@ -21,7 +21,7 @@
 .ba-tapHint {
   display: none;
   text-align: center;
-  margin: -34px auto 34px; /* pulls closer to button, then space to thumbnails */
+  margin: -34px auto 34px;
   font-family: "Press Start 2P", system-ui;
   font-size: 12px;
   letter-spacing: 1px;
@@ -38,8 +38,18 @@
   justify-content: center;
 }
 
-.ba-card {
+/* wrapper to control visibility without touching BeforeAfterCard */
+.ba-cardWrap {
   width: 33.33%;
+}
+
+/* 4th card hidden on laptop/big screens */
+.ba-cardWrap--mobileOnly {
+  display: none;
+}
+
+.ba-card {
+  width: 100%;
   background: #000;
   border: 3px solid #000;
   border-radius: 20px;
@@ -148,13 +158,12 @@
 .ba-btnWrap {
   display: flex;
   justify-content: center;
-  margin-top: 60px; /* default (kept, for reuse if you ever move it again) */
+  margin-top: 60px;
 }
 
-/* When button is placed ABOVE thumbnails */
 .ba-btnWrap--top {
   margin-top: 0;
-  margin-bottom: 60px; /* space between button and thumbnails */
+  margin-bottom: 60px;
 }
 
 .ba-btn {
@@ -199,8 +208,13 @@
     justify-content: center;
   }
 
-  .ba-card {
+  .ba-cardWrap {
     width: 48%;
+  }
+
+  /* show 4th on tablets and below */
+  .ba-cardWrap--mobileOnly {
+    display: block;
   }
 }
 
@@ -216,11 +230,10 @@
     letter-spacing: 2px;
   }
 
-  /* show hint only on small screens */
   .ba-tapHint {
     display: block;
     font-size: 10px;
-    margin: -18px auto 26px; /* sits right under button, then space to thumbnails */
+    margin: -18px auto 26px;
   }
 
   .ba-grid {
@@ -229,8 +242,11 @@
     max-width: 520px;
   }
 
-  .ba-card {
+  .ba-cardWrap {
     width: 100%;
+  }
+
+  .ba-card {
     padding: 14px;
     border-radius: 16px;
     box-shadow: 6px 6px 0 #000;
@@ -259,7 +275,6 @@
     font-size: 11px;
   }
 
-  /* button now above thumbnails => use bottom margin */
   .ba-btnWrap--top {
     margin-bottom: 34px;
   }
@@ -302,7 +317,6 @@
     height: 18px;
   }
 
-  /* keep hint readable on extra small screens */
   .ba-tapHint {
     font-size: 9px;
     margin: -16px auto 22px;

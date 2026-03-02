@@ -1,4 +1,3 @@
-// beforenafter.jsx
 import React, { useMemo, useRef, useState } from "react";
 import "./beforenafter.css";
 
@@ -8,6 +7,8 @@ import before2 from "./before2.jpg";
 import after2 from "./after2.jpg";
 import before3 from "./before3.jpg";
 import after3 from "./after3.jpg";
+import before4 from "./before4.jpg";
+import after4 from "./after4.jpg";
 
 function clamp(n, min, max) {
   return Math.max(min, Math.min(max, n));
@@ -114,13 +115,13 @@ export default function BeforeNAfter() {
     { title: "", beforeSrc: before1, afterSrc: after1 },
     { title: "", beforeSrc: before2, afterSrc: after2 },
     { title: "", beforeSrc: before3, afterSrc: after3 },
+    { title: "", beforeSrc: before4, afterSrc: after4 },
   ];
 
   return (
     <section className="ba-section">
       <h2 className="ba-heading">RECREATED THUMBNAILS</h2>
 
-      {/* VIEW SOURCE BUTTON (moved ABOVE thumbnails) */}
       <div className="ba-btnWrap ba-btnWrap--top">
         <a
           className="ba-btn"
@@ -132,12 +133,16 @@ export default function BeforeNAfter() {
         </a>
       </div>
 
-      {/* Small-screen only hint line (after button, before thumbnails) */}
       <div className="ba-tapHint">Don't slide manually, just tap on the design.</div>
 
       <div className="ba-grid">
         {items.map((it, idx) => (
-          <BeforeAfterCard key={idx} title={it.title} beforeSrc={it.beforeSrc} afterSrc={it.afterSrc} />
+          <div
+            key={idx}
+            className={idx === 3 ? "ba-cardWrap ba-cardWrap--mobileOnly" : "ba-cardWrap"}
+          >
+            <BeforeAfterCard title={it.title} beforeSrc={it.beforeSrc} afterSrc={it.afterSrc} />
+          </div>
         ))}
       </div>
     </section>

@@ -3,19 +3,19 @@ import { useEffect, useState, useCallback } from "react";
 
 import t1 from "./t1.png";
 import t2 from "./t2.png";
-import t3 from "./t3.png";
+// removed t3
 import t4 from "./t4.png";
 import t5 from "./t5.png";
 import t6 from "./t6.png";
 
 function Portfolio() {
   const items = [
-    { img: t1, title: "From NOOB to KING in 100 Days!",    },
-    { img: t2, title: "The Calm Before I Destroyed Everything",    },
-    { img: t3, title: "3 Pro Speedrunners vs 1 Secret Cheater",    },
-    { img: t4, title: "Minecraft Skeletons If They Had Jobs",    },
-    { img: t5, title: "Surviving a Minecraft Tsunami…",    },
-    { img: t6, title: "100 Tanks vs Ender Monster… Who Wins?",    },
+    { img: t1, title: "From NOOB to KING in 100 Days!" },
+    { img: t2, title: "The Calm Before I Destroyed Everything" },
+    // removed old 3rd item (t3)
+    { img: t4, title: "Minecraft Skeletons If They Had Jobs" }, // now 3rd
+    { img: t5, title: "Surviving a Minecraft Tsunami…" }, // now 4th
+    { img: t6, title: "100 Tanks vs Ender Monster… Who Wins?" }, // now 5th
   ];
 
   const [index, setIndex] = useState(0);
@@ -28,7 +28,7 @@ function Portfolio() {
     setIndex((i) => (i + 1) % items.length);
   }, [items.length]);
 
-  // Auto slide every 2s
+  // Auto slide every 6s
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((i) => (i + 1) % items.length);
