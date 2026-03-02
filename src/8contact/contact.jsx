@@ -16,7 +16,7 @@ function Contact() {
             className="contact-btn contact-white"
           >
             <img src={gmailLogo} alt="gmail" className="contact-icon" />
-            GMAIL
+            dm8xgraphics@gmail.com
           </a>
         </div>
       </div>
