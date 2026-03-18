@@ -6,16 +6,16 @@ const plans = [
     name: "Per Video",
     price: 19,
     features: [
-      "2 YouTube-Optimized Thumbnails",
+      "1 YouTube-Optimized Thumbnails",
       "Delivered in 24 Hours",
       "Up to 3 Revisions",
     ],
   },
   {
     name: "3 Videos Bundle",
-    price: 49,
+    price: 45,
     features: [
-      "6 YouTube-Optimized Thumbnails (2 for each)",
+      "3 YouTube-Optimized Thumbnails (1 for each video)",
       "Delivered in 8 Hours",
       "Unlimited Revisions",
     ],
